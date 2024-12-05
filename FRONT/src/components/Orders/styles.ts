@@ -5,5 +5,6 @@ export const Container = styled.div`
     max-width: 1100px;
     margin: 40px auto;
     display: flex;
+    align-items: baseline;
     gap: 32px;
 `
