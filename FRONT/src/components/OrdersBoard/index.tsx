@@ -13,9 +13,14 @@ export const OrdersBoard = ({ title, icon, orders }: OrdersBoardProps) => {
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
     const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
-    const handleOpenOrder = (order: Order) => {
+    const handleOpenModal = (order: Order) => {
         setIsModalVisible(true)
         setSelectedOrder(order)
+    }
+
+    const handleCloseModal = () => {
+        setIsModalVisible(false)
+        setSelectedOrder(null)
     }
 
     return (
@@ -24,6 +29,7 @@ export const OrdersBoard = ({ title, icon, orders }: OrdersBoardProps) => {
                 <OrderModal
                     order={selectedOrder}
                     visible={isModalVisible}
+                    onClose={handleCloseModal}
                 />
 
                 <header>
@@ -36,7 +42,7 @@ export const OrdersBoard = ({ title, icon, orders }: OrdersBoardProps) => {
                     <Container
                         type='button'
                         key={order.id}
-                        onClick={() => handleOpenOrder(order)}
+                        onClick={() => handleOpenModal(order)}
                     >
                         <strong>Mesa {order.table}</strong>
                         <span>

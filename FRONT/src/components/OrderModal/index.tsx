@@ -1,16 +1,22 @@
-import { ModalBody, OrderDetails, Overlay } from './styles';
+import { Actions, ModalBody, OrderDetails, Overlay } from './styles';
 
 import { Order } from '../../types/Order';
+import { formatCurrency } from '../../utils/formatCurrency';
 
 interface OrderModalProps {
     visible: boolean;
     order: Order | null;
+    onClose: () => void;
 }
 
-export const OrderModal = ({ order, visible }: OrderModalProps) => {
+export const OrderModal = ({ order, visible, onClose }: OrderModalProps) => {
     if(!visible || !order) {
         return
     }
+
+    const total = order.products.reduce((total, {product, quantity}) => {
+        return total + (product.price * quantity);
+    }, 0)
 
     return (
         <>
@@ -19,7 +25,7 @@ export const OrderModal = ({ order, visible }: OrderModalProps) => {
                     <header>
                         <strong>Mesa {order.table}</strong>
 
-                        <button type='button'>❌</button>
+                        <button type='button' onClick={onClose}>❌</button>
                     </header>
 
                     <div className='status'>
@@ -41,8 +47,35 @@ export const OrderModal = ({ order, visible }: OrderModalProps) => {
                     <OrderDetails>
                         <strong>Itens</strong>
 
+                        <ul>
+                            {order.products.map(({id, product, quantity}) => (
+                                <li key={id}>
+                                    <img src='' alt='' height='40px' width='40px' />
+                                    <span className='quantity'>{quantity} x</span>
 
+                                    <div className='product-details'>
+                                        <strong>{product.name}</strong>
+                                        <span>{formatCurrency(product.price)}</span>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+
+                        <div className='total'>
+                            <span>Total</span>
+                            <strong>{formatCurrency(total)}</strong>
+                        </div>
                     </OrderDetails>
+
+                    <Actions>
+                        <button type='button' className='initial'>
+                            Inicial Produção
+                        </button>
+
+                        <button type='button' className='cancel'>
+                            Cancelar Pedido
+                        </button>
+                    </Actions>
                 </ModalBody>
             </Overlay>
         </>

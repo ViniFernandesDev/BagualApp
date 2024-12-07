@@ -58,8 +58,8 @@ export const OrderDetails = styled.div`
     margin-top: 32px;
 
     & > strong {
-        font-size: 14px;
-        font-weight: 500;
+        font-size: 16px;
+        font-weight: 600;
         opacity: 0.8;
     }
 
@@ -72,7 +72,7 @@ export const OrderDetails = styled.div`
 
         & li {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 6px;
 
             & img {
@@ -89,6 +89,7 @@ export const OrderDetails = styled.div`
                 display: flex;
                 flex-direction: column;
                 font-size: 16px;
+                gap:4px;
 
                 & span {
                     font-weight: 300;
@@ -96,5 +97,57 @@ export const OrderDetails = styled.div`
                 }
             }
         }
+    }
+
+    & .total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 24px;
+
+        & span {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        & strong {
+            font-size: 18px;
+        }
+    }
+`
+
+export const Actions = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+    gap: 16px;
+
+    & .initial {
+        background: #333333;
+        border-radius: 48px;
+        border: 0;
+        color: #ffffff;
+        font-weight: 600;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s all;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    & .cancel {
+        background: transparent;
+        border-radius: 48px;
+        border: 0;
+        color: #D73035;
+        font-weight: 600;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 `
