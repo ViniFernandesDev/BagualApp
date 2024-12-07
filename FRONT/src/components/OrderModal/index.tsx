@@ -2,6 +2,7 @@ import { Actions, ModalBody, OrderDetails, Overlay } from './styles';
 
 import { Order } from '../../types/Order';
 import { formatCurrency } from '../../utils/formatCurrency';
+import { useEffect } from 'react';
 
 interface OrderModalProps {
     visible: boolean;
@@ -17,6 +18,21 @@ export const OrderModal = ({ order, visible, onClose }: OrderModalProps) => {
     const total = order.products.reduce((total, {product, quantity}) => {
         return total + (product.price * quantity);
     }, 0)
+
+    useEffect(() => {
+        function handleKeyDown(event: KeyboardEvent) {
+          if (event.key === 'Escape') {
+            onClose();
+          }
+        }
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+          document.removeEventListener('keydown', handleKeyDown);
+        };
+      }, [onClose]);
+
 
     return (
         <>
