@@ -1,7 +1,7 @@
 export interface Order {
     id: string;
     table: string;
-    status: string;
+    status: 'WAITING' | 'IN_PRODUCTION' | 'DONE';
     products: Array<{
         id: string;
         quantity: number;
@@ -12,3 +12,4 @@ export interface Order {
         }
     }>
 }
+

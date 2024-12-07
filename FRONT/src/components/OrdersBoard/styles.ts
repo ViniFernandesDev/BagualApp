@@ -8,7 +8,7 @@ export const Board = styled.div`
     color: #3c3c3c;
     flex: 1;
 
-    header {
+    > header {
         padding: 8px;
         display: flex;
         justify-content: center;

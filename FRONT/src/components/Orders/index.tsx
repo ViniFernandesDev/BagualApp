@@ -7,7 +7,7 @@ export const Orders = () => {
         {
           id: "1",
           table: "A1",
-          status: "open",
+          status: "IN_PRODUCTION",
           products: [
             {
               id: "101",
@@ -32,7 +32,7 @@ export const Orders = () => {
         {
           id: "2",
           table: "B2",
-          status: "in progress",
+          status: "WAITING",
           products: [
             {
               id: "103",
@@ -48,7 +48,7 @@ export const Orders = () => {
         {
           id: "3",
           table: "C3",
-          status: "closed",
+          status: "DONE",
           products: [
             {
               id: "104",
